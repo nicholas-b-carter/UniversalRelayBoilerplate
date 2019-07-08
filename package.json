@@ -7,11 +7,9 @@
     "postinstall-for-heroku-not-for-buld-server": "npm run build-schema && npm run build-webpack",
     "setup-local": "cp ./configuration/scripts/default.env ./.env && cp ./configuration/scripts/default.publicURL.js ./configuration/scripts/publicURL.js",
     "setup-cassandra-init": "cqlsh -f ./configuration/scripts/cassandra-init.cql",
-
     "config-da-memory": "./node_modules/.bin/replace OBJECT_PERSISTENCE=cassandra OBJECT_PERSISTENCE=memory ./.env",
     "config-da-cassandra": "./node_modules/.bin/replace OBJECT_PERSISTENCE=memory OBJECT_PERSISTENCE=cassandra ./.env",
     "update-ip": "./node_modules/.bin/babel-node ./scripts/update-ip.js",
-
     "build-schema": "./node_modules/.bin/babel-node ./scripts/build-schema.js",
     "build-bump-version": "./node_modules/.bin/babel-node ./scripts/build-bump-version.js",
     "build-webpack": "export NODE_ENV=production && rm -rf public/assets && mkdir public/assets &&  ./node_modules/.bin/webpack -p --output-filename client.js",
@@ -20,12 +18,13 @@
     "build-bundle-ios": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=false",
     "build-bundle-ios-dev": "curl -o ./ios/main.jsbundle http://localhost:8081/index.ios.bundle?platform=ios&dev=true",
     "lint": "eslint app configuration data graphql scripts server units webapp",
-
     "start-webpack": "rm -rf build && better-npm-run start-webpack",
     "start-dev": "better-npm-run start-dev",
     "dev": "rm -rf build && concurrently --kill-others \"npm run start-webpack\" \"npm run start-dev\" \"npm run start\" ",
     "prod": "export NODE_ENV=production && ./node_modules/.bin/babel-node ./server/server.js",
-    "start": "node node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "betterScripts": {
     "start-dev": {
@@ -82,7 +81,8 @@
     "react-tap-event-plugin": "1.0.0",
     "relay-local-schema": "0.5.0",
     "replace": "0.3.0",
-    "winston": "2.2.0"
+    "winston": "2.2.0",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "babel-cli": "6.9.0",
@@ -125,5 +125,6 @@
   },
   "version": "8.0.0",
   "private": false,
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }

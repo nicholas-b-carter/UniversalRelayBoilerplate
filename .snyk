@@ -1,0 +1,18 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - eslint > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
+    - react-router-relay > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
+    - eslint > inquirer > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
+    - eslint > table > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
+    - isomorphic-relay-router > react-router-relay > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
+    - material-ui > recompose > lodash:
+        patched: '2019-07-08T01:50:32.018Z'
